@@ -75,6 +75,8 @@ RSpec.configure do |config|
 
   config.before do
     ActiveRecord::Base.observers.disable :all # <-- Turn 'em all off!
+    allow(RedisClient).to receive(:get)
+    allow(RedisClient).to receive(:set)
   end
 
   # Only turn on VCR if :vcr is included metadata keys
